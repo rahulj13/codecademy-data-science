@@ -1,0 +1,42 @@
+SELECT COUNT(*) FROM countries 
+WHERE continent = 'Africa';
+--56
+
+SELECT SUM(population_years.population)
+FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE population_years.year = 2005 AND countries.continent = 'Oceania';
+--32.66417
+
+SELECT AVG(population_years.population)
+FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE population_years.year = 2003 AND countries.continent = 'South America';
+--25.89
+
+SELECT countries.name, MIN(population_years.population)
+FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE population_years.year = 2007;
+--Niue
+
+SELECT AVG(population_years.population)
+FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE countries.name = 'Poland';
+--38.5
+
+SELECT COUNT(*) FROM countries
+WHERE name LIKE '%The%';
+--4
+
+SELECT continent, SUM(population_years.population)
+FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+GROUP BY 1
+ORDER BY 2 DESC;
